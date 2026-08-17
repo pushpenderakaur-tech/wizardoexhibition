@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Wizardo Exhibition & Interior Design</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Tw+Cen+MT:wght@400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --orange:#ff7a00;
+    --dark:#3f3f3f;
+    --light:#f7f7f5;
+    --white:#ffffff;
+}
+
+body{
+    font-family:"Tw Cen MT","Century Gothic",Arial,sans-serif;
+    background:#111;
+    color:white;
+    overflow:hidden;
+}
+
+/* BACKGROUND */
+
+.background{
+    position:fixed;
+    inset:0;
+    background:
+        linear-gradient(115deg,rgba(0,0,0,.94),rgba(30,30,30,.88)),
+        radial-gradient(circle at 80% 20%,rgba(255,122,0,.18),transparent 35%);
+    z-index:-5;
+}
+
+.grid{
+    position:fixed;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:50px 50px;
+    transform:perspective(500px) rotateX(55deg) scale(1.5);
+    transform-origin:center bottom;
+    opacity:.35;
+    z-index:-4;
+}
+
+.orangeGlow{
+    position:fixed;
+    width:450px;
+    height:450px;
+    border-radius:50%;
+    background:rgba(255,122,0,.09);
+    filter:blur(100px);
+    right:-150px;
+    top:-150px;
+    z-index:-3;
+    animation:glow 7s infinite alternate ease-in-out;
+}
+
+@keyframes glow{
+    from{transform:translate(0,0)}
+    to{transform:translate(-180px,180px)}
+}
+
+/* MAIN */
+
+#app{
+    width:100vw;
+    height:100vh;
+    position:relative;
+}
+
+.page{
+    position:absolute;
+    inset:0;
+    padding:40px 7%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    opacity:0;
+    pointer-events:none;
+    transform:translateX(40px);
+
+    transition:
+        opacity .6s ease,
+        transform .6s ease;
+}
+
+.page.active{
+    opacity:1;
+    pointer-events:auto;
+    transform:translateX(0);
+}
+
+.container{
+    width:min(1100px,100%);
+}
+
+/* TOP BRAND */
+
+.brand{
+    position:absolute;
+    top:28px;
+    left:7%;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.brand img{
+    width:150px;
+    max-height:60px;
+    object-fit:contain;
+    background:white;
+    padding:5px;
+}
+
+.brandText{
+    font-size:12px;
+    letter-spacing:2px;
+    color:#aaa;
+}
+
+/* WELCOME */
+
+.welcome{
+    text-align:center;
+}
+
+.welcome img{
+    width:min(650px,90%);
+    background:white;
+    padding:18px 25px;
+    border-radius:5px;
+
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,.1),
+        0 25px 80px rgba(0,0,0,.5);
+
+    animation:logoReveal 1.4s ease both;
+}
+
+@keyframes logoReveal{
+    from{
+        opacity:0;
+        transform:scale(.85);
+        filter:blur(12px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+        filter:blur(0);
+    }
+}
+
+.welcome h1{
+    margin-top:35px;
+    font-size:clamp(30px,5vw,58px);
+    font-weight:500;
+    letter-spacing:2px;
+}
+
+.welcome h1 span{
+    color:var(--orange);
+}
+
+.tagline{
+    margin-top:15px;
+    color:#aaa;
+    font-size:20px;
+    letter-spacing:3px;
+}
+
+/* HEADINGS */
+
+.heading{
+    font-size:clamp(38px,6vw,70px);
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+.heading span{
+    color:var(--orange);
+}
+
+.line{
+    width:70px;
+    height:4px;
+    background:var(--orange);
+    margin:20px 0 30px;
+}
+
+.text{
+    max-width:900px;
+    font-size:20px;
+    line-height:1.65;
+    color:#c9c9c9;
+}
+
+/* BUTTONS */
+
+.buttons{
+    display:flex;
+    gap:14px;
+    margin-top:40px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:none;
+    padding:15px 30px;
+    border-radius:3px;
+
+    font-family:inherit;
+    font-size:16px;
+    letter-spacing:1px;
+    font-weight:bold;
+
+    cursor:pointer;
+    transition:.3s;
+}
+
+.next{
+    background:var(--orange);
+    color:white;
+}
+
+.next:hover{
+    background:#ff8c22;
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(255,122,0,.25);
+}
+
+.back{
+    background:transparent;
+    border:1px solid #555;
+    color:#ddd;
+}
+
+.back:hover{
+    border-color:white;
+    transform:translateY(-3px);
+}
+
+/* SERVICES */
+
+.services{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-top:35px;
+}
+
+.service{
+    padding:25px 18px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.09);
+    transition:.35s;
+}
+
+.service:hover{
+    transform:translateY(-7px);
+    border-color:var(--orange);
+}
+
+.service .number{
+    color:var(--orange);
+    font-size:14px;
+}
+
+.service h3{
+    margin-top:18px;
+    font-size:20px;
+}
+
+.service p{
+    margin-top:10px;
+    color:#999;
+    font-size:14px;
+    line-height:1.5;
+}
+
+/* STALL CHOICE */
+
+.choiceGrid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+    margin-top:35px;
+}
+
+.choice{
+    position:relative;
+    height:350px;
+    overflow:hidden;
+    cursor:pointer;
+    border:1px solid #333;
+    background:#222;
+}
+
+.choice img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.7s;
+    opacity:.55;
+}
+
+.choice:hover img{
+    transform:scale(1.08);
+    opacity:.8;
+}
+
+.choiceOverlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:30px;
+
+    background:
+        linear-gradient(transparent 20%,rgba(0,0,0,.9));
+}
+
+.choiceTag{
+    color:var(--orange);
+    font-size:13px;
+    letter-spacing:2px;
+}
+
+.choice h2{
+    font-size:35px;
+    margin-top:8px;
+}
+
+.choice p{
+    color:#bbb;
+    margin-top:8px;
+}
+
+/* STALL DETAIL */
+
+.detail{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:45px;
+    align-items:center;
+}
+
+.detailImage{
+    height:430px;
+    overflow:hidden;
+    border:1px solid #333;
+}
+
+.detailImage img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.detailText h2{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.detailText h2 span{
+    color:var(--orange);
+}
+
+.detailText p{
+    color:#bbb;
+    font-size:18px;
+    line-height:1.65;
+}
+
+/* SIZE */
+
+.sizeGrid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-top:30px;
+}
+
+.size{
+    padding:25px 15px;
+    background:#171717;
+    border:1px solid #333;
+    text-align:center;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.size:hover,
+.size.selected{
+    border-color:var(--orange);
+    background:rgba(255,122,0,.1);
+    transform:translateY(-5px);
+}
+
+.size strong{
+    font-size:22px;
+}
+
+.size small{
+    display:block;
+    color:#888;
+    margin-top:8px;
+}
+
+/* FORM */
+
+.form{
+    max-width:850px;
+}
+
+.input,
+.textarea{
+    width:100%;
+    margin-top:15px;
+    background:#171717;
+    border:1px solid #333;
+    color:white;
+    padding:16px;
+    font-family:inherit;
+    font-size:17px;
+    outline:none;
+}
+
+.input:focus,
+.textarea:focus{
+    border-color:var(--orange);
+}
+
+.textarea{
+    height:150px;
+    resize:none;
+}
+
+/* SUCCESS */
+
+.success{
+    text-align:center;
+}
+
+.successIcon{
+    width:85px;
+    height:85px;
+    border:3px solid var(--orange);
+    border-radius:50%;
+    margin:0 auto 30px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:40px;
+    color:var(--orange);
+
+    animation:successPop .8s ease;
+}
+
+@keyframes successPop{
+    from{
+        transform:scale(.3);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.success h1{
+    font-size:55px;
+}
+
+.success p{
+    color:#aaa;
+    font-size:20px;
+    line-height:1.6;
+    margin-top:15px;
+}
+
+/* PROGRESS */
+
+.progress{
+    position:fixed;
+    bottom:25px;
+    left:7%;
+    right:7%;
+    height:2px;
+    background:#333;
+}
+
+.progressBar{
+    height:100%;
+    width:8%;
+    background:var(--orange);
+    transition:.5s;
+}
+
+/* FOOTER */
+
+.footer{
+    position:fixed;
+    bottom:24px;
+    right:7%;
+    font-size:12px;
+    color:#666;
+    letter-spacing:1px;
+}
+
+/* MOBILE */
+
+@media(max-width:750px){
+
+    .page{
+        padding:75px 6% 70px;
+        overflow-y:auto;
+        align-items:flex-start;
+    }
+
+    .brand{
+        top:18px;
+        left:6%;
+    }
+
+    .brand img{
+        width:110px;
+    }
+
+    .services{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .choiceGrid{
+        grid-template-columns:1fr;
+    }
+
+    .choice{
+        height:240px;
+    }
+
+    .detail{
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+
+    .detailImage{
+        height:220px;
+    }
+
+    .detailText h2{
+        font-size:34px;
+    }
+
+    .sizeGrid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .text{
+        font-size:17px;
+    }
+
+    .welcome img{
+        width:95%;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="grid"></div>
+<div class="orangeGlow"></div>
+
+<div id="app">
+
+<!-- ================= WELCOME ================= -->
+
+<section class="page active" id="page0">
+
+<div class="container welcome">
+
+    <img src="logo.jpg" alt="Wizardo Exhibition & Interior Design">
+
+    <h1>
+        WELCOME TO <span>WIZARDO</span>
+    </h1>
+
+    <div class="tagline">
+        EXHIBITION & INTERIOR DESIGN
+    </div>
+
+    <div class="buttons" style="justify-content:center;">
+        <button class="btn next" onclick="nextPage()">
+            START YOUR PROJECT →
+        </button>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section class="page" id="page1">
+
+<div class="container">
+
+    <div class="heading">
+        About <span>Wizardo</span>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="text">
+
+        Wizardo Exhibition & Interior Design is an
+        <b>Exhibition Design & Production Company</b>
+        specialising in creative stall design, production and complete
+        exhibition solutions.
+
+        <br><br>
+
+        With professional designers, builders and in-house production
+        capabilities, we manage projects from
+        <b>concept to final installation</b>.
+
+        <br><br>
+
+        Based in Delhi with production setups in
+        <b>Delhi, Mumbai & Bangalore</b>, we serve clients across
+        India and internationally.
+
+    </div>
+
+    <div class="buttons">
+        <button class="btn back" onclick="prevPage()">← BACK</button>
+        <button class="btn next" onclick="nextPage()">NEXT →</button>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= SERVICES ================= -->
+
+<section class="page" id="page2">
+
+<div class="container">
+
+    <div class="heading">
+        What We <span>Do</span>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="services">
+
+        <div class="service">
+            <div class="number">01</div>
+            <h3>Stall Design</h3>
+            <p>Creative and functional exhibition stall concepts.</p>
+        </div>
+
+        <div class="service">
+            <div class="number">02</div>
+            <h3>Production</h3>
+            <p>Professional fabrication and complete execution.</p>
+        </div>
+
+        <div class="service">
+            <div class="number">03</div>
+            <h3>Branding</h3>
+            <p>Graphics, branding and visual communication.</p>
+        </div>
+
+        <div class="service">
+            <div class="number">04</div>
+            <h3>Event Solutions</h3>
+            <p>Manpower, audio-video and exhibition support.</p>
+        </div>
+
+    </div>
+
+    <div class="buttons">
+        <button class="btn back" onclick="prevPage()">← BACK</button>
+        <button class="btn next" onclick="nextPage()">NEXT →</button>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= CHOOSE STALL ================= -->
+
+<section class="page" id="page3">
+
+<div class="container">
+
+    <div class="heading">
+        Choose Your <span>Stall</span>
+    </div>
+
+    <div class="text">
+        Select the type of exhibition space you are looking for.
+    </div>
+
+    <div class="choiceGrid">
+
+        <div class="choice" onclick="chooseType('Booth Design')">
+
+            <img src="booth.jpg" alt="Booth Design">
+
+            <div class="choiceOverlay">
+
+                <div class="choiceTag">
+                    OPTION 01
+                </div>
+
+                <h2>Booth Design</h2>
+
+                <p>
+                    Custom-designed exhibition space
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="choice" onclick="chooseType('Shell Scheme')">
+
+            <img src="shell.jpg" alt="Shell Scheme">
+
+            <div class="choiceOverlay">
+
+                <div class="choiceTag">
+                    OPTION 02
+                </div>
+
+                <h2>Shell Scheme</h2>
+
+                <p>
+                    Ready-made modular exhibition space
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="buttons">
+        <button class="btn back" onclick="prevPage()">← BACK</button>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= BOOTH INFO ================= -->
+
+<section class="page" id="page4">
+
+<div class="container detail">
+
+    <div class="detailImage">
+        <img src="booth.jpg" alt="Booth Design">
+    </div>
+
+    <div class="detailText">
+
+        <div class="choiceTag">
+            YOUR SELECTION
+        </div>
+
+        <h2>
+            Booth <span>Design</span>
+        </h2>
+
+        <p>
+            Booth design is the art and plan of building a temporary
+            physical space for a brand at a trade show, exhibition,
+            or public event.
+        </p>
+
+        <br>
+
+        <p>
+            Its goal is to attract visitors, showcase products and
+            communicate your brand effectively in a busy exhibition
+            environment.
+        </p>
+
+        <div class="buttons">
+            <button class="btn back" onclick="prevPage()">← BACK</button>
+            <button class="btn next" onclick="nextPage()">NEXT →</button>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= SHELL INFO ================= -->
+
+<section class="page" id="page5">
+
+<div class="container detail">
+
+    <div class="detailImage">
+        <img src="shell.jpg" alt="Shell Scheme">
+    </div>
+
+    <div class="detailText">
+
+        <div class="choiceTag">
+            YOUR SELECTION
+        </div>
+
+        <h2>
+            Shell <span>Scheme</span>
+        </h2>
+
+        <p>
+            A shell scheme is a ready-made modular exhibition space
+            provided by event organisers.
+        </p>
+
+        <br>
+
+        <p>
+            It generally includes aluminium framing, wall panels,
+            fascia branding, basic flooring, lighting and power
+            provision.
+        </p>
+
+        <div class="buttons">
+            <button class="btn back" onclick="prevPage()">← BACK</button>
+            <button class="btn next" onclick="nextPage()">NEXT →</button>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= SIZE ================= -->
+
+<section class="page" id="page6">
+
+<div class="container">
+
+    <div class="heading">
+        Select Stall <span>Size</span>
+    </div>
+
+    <div class="text">
+        What is the approximate size of your exhibition space?
+    </div>
+
+    <div class="sizeGrid">
+
+        <div class="size" onclick="selectSize(this)">
+            <strong>9–18 SQM</strong>
+            <small>Small Stall</small>
+        </div>
+
+        <div class="size" onclick="selectSize(this)">
+            <strong>18–36 SQM</strong>
+            <small>Medium Stall</small>
+        </div>
+
+        <div class="size" onclick="selectSize(this)">
+            <strong>36–72 SQM</strong>
+            <small>Large Stall</small>
+        </div>
+
+        <div class="size" onclick="selectSize(this)">
+            <strong>72+ SQM</strong>
+            <small>Custom Project</small>
+        </div>
+
+    </div>
+
+    <div class="buttons">
+
+        <button class="btn back" onclick="goToType()">
+            ← BACK
+        </button>
+
+        <button class="btn next" onclick="nextPage()">
+            NEXT →
+        </button>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= REQUIREMENT ================= -->
+
+<section class="page" id="page7">
+
+<div class="container">
+
+    <div class="heading">
+        Tell Us Your <span>Requirement</span>
+    </div>
+
+    <div class="text">
+        Share a brief about your exhibition requirement.
+        Our team will understand your requirement and get back to you.
+    </div>
+
+    <div class="form">
+
+        <input
+            class="input"
+            id="name"
+            placeholder="Your Name"
+        >
+
+        <input
+            class="input"
+            id="company"
+            placeholder="Company Name"
+        >
+
+        <input
+            class="input"
+            id="contact"
+            placeholder="Phone / WhatsApp / Email"
+        >
+
+        <textarea
+            class="textarea"
+            id="requirement"
+            placeholder="Tell us what you need... e.g. design, meeting room, storage, counters, screens, branding, etc."
+        ></textarea>
+
+    </div>
+
+    <div class="buttons">
+
+        <button class="btn back" onclick="prevPage()">
+            ← BACK
+        </button>
+
+        <button class="btn next" onclick="submitRequest()">
+            SUBMIT REQUIREMENT →
+        </button>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= SUCCESS ================= -->
+
+<section class="page" id="page8">
+
+<div class="container success">
+
+    <div class="successIcon">
+        ✓
+    </div>
+
+    <h1>
+        REQUEST <span style="color:var(--orange)">RECEIVED</span>
+    </h1>
+
+    <p>
+        Thank you for sharing your exhibition requirement.
+        <br>
+        Our team will review your requirement and contact you shortly.
+    </p>
+
+    <p style="font-size:16px;color:#777;">
+        Wizardo Exhibition & Interior Design
+    </p>
+
+    <div class="buttons" style="justify-content:center;">
+
+        <button class="btn back" onclick="goToPage(3)">
+            ← MODIFY REQUIREMENT
+        </button>
+
+        <button class="btn next" onclick="goToPage(0)">
+            BACK TO HOME
+        </button>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- PROGRESS -->
+
+<div class="progress">
+    <div class="progressBar" id="progressBar"></div>
+</div>
+
+<div class="footer">
+    WIZARDO EXHIBITION & INTERIOR DESIGN
+</div>
+
+</div>
+
+
+<script>
+
+let currentPage = 0;
+
+let selectedType = "";
+
+let selectedSize = "";
+
+
+/* PAGE CHANGE */
+
+function goToPage(number){
+
+    document.querySelectorAll(".page").forEach(page=>{
+        page.classList.remove("active");
+    });
+
+    setTimeout(()=>{
+
+        document
+            .getElementById("page"+number)
+            .classList.add("active");
+
+        currentPage = number;
+
+        updateProgress();
+
+    },100);
+}
+
+
+function nextPage(){
+
+    let next = currentPage + 1;
+
+    /*
+      Page 4 = Booth information
+      Page 5 = Shell information
+    */
+
+    if(currentPage === 3){
+
+        return;
+
+    }
+
+    if(next <= 8){
+
+        goToPage(next);
+
+    }
+
+}
+
+
+function prevPage(){
+
+    if(currentPage > 0){
+
+        goToPage(currentPage - 1);
+
+    }
+
+}
+
+
+/* STALL TYPE */
+
+function chooseType(type){
+
+    selectedType = type;
+
+    if(type === "Booth Design"){
+
+        goToPage(4);
+
+    }
+
+    else{
+
+        goToPage(5);
+
+    }
+
+}
+
+
+/* AFTER TYPE INFORMATION */
+
+function goToType(){
+
+    goToPage(3);
+
+}
+
+
+/* SIZE */
+
+function selectSize(element){
+
+    document
+        .querySelectorAll(".size")
+        .forEach(x=>x.classList.remove("selected"));
+
+    element.classList.add("selected");
+
+    selectedSize = element.querySelector("strong").innerText;
+
+}
+
+
+/* SUBMIT */
+
+function submitRequest(){
+
+    let name =
+        document.getElementById("name").value.trim();
+
+    let contact =
+        document.getElementById("contact").value.trim();
+
+    let requirement =
+        document.getElementById("requirement").value.trim();
+
+
+    if(name === "" || contact === ""){
+
+        alert(
+            "Please enter your name and contact details."
+        );
+
+        return;
+
+    }
+
+    goToPage(8);
+
+}
+
+
+/* PROGRESS */
+
+function updateProgress(){
+
+    let percent =
+        ((currentPage + 1) / 9) * 100;
+
+    document
+        .getElementById("progressBar")
+        .style.width = percent + "%";
+
+}
+
+</script>
+
+</body>
+</html>
